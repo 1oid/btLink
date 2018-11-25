@@ -1,4 +1,4 @@
-# btLink
+# btLink (未开发完.....修复bug_ing.....并且还在优化用户体验)
 ___
 ## 第一次使用Android+MUI开发应用,感觉特好用
 [MUI文档移步](http://dev.dcloud.net.cn/mui/ui/)
@@ -8,7 +8,7 @@ ___
 - IDE: Android Studio
 
 ## App 效果浏览
-![图1](./images/1.png){:height="100px" width="400px"}
+<img src="./images/1.png" alt="图1" width="200" height="400" />
 ![图2](./images/2.png)
 ![图3](./images/3.png)
 
@@ -16,7 +16,7 @@ ___
 ### 遇到的一些问题
 + `JavascriptInterface`返回的数据好像并不能用ArrayList与数组,不清楚用什么方法才能让js接收数组/对象,
 此处为用的是将字符串拼接成js数组对象,然后js再用JSON.parse()方法将字符串转换成数组,然后遍历对象
-```python
+```java
 public String getResultList(String searchName) {
     int i = 0;
     String text = "";
