@@ -8,7 +8,7 @@ ___
 - IDE: Android Studio
 
 ## App 效果浏览
-![图1](./images/1.png)
+![图1](./images/1.png){:height="100px" width="400px"}
 ![图2](./images/2.png)
 ![图3](./images/3.png)
 
