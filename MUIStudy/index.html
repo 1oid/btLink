@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+		window.onload = function() {
+			document.getElementById("clear").addEventListener("tap", function(){
+				var input_elements = document.getElementsByTagName("input");
+				for(var i=0;i<input_elements.length;i++){
+					// console.log(input_elements[i].type);
+					var current_element = input_elements[i];
+					console.log(current_element);
+					
+					switch(current_element.type) {
+						case "checkbox": current_element.checked=false;break;
+						case "text": current_element.value = "";
+						default:
+							console.log("not");
+							break;
+					}
+				}
+			});
+			
+			mui(document.body).on("tap", "#submit", function(e){
+				mui.alert("这是消息", "标题", "按钮文本");
+				//mui.confirm("消息正文", "标题", "按钮");
+			});
+		}
+		
+		
+		
+	
+    </script>
+	
+	<style type="text/css">
+		button {
+			width: 40%;
+			height: 40px;
+		}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<h1 class="mui-title">爱好</h1>
+	</header>
+	
+	<div class="mui-content">
+		<div class="mui-input-row mui-checkbox ">
+			<label>苹果</label>
+			<input name="Checkbox" type="checkbox">
+		</div>
+		<div class="mui-input-row mui-checkbox ">
+			<label>梨子</label>
+			<input name="Checkbox" type="checkbox">
+		</div>
+		<div class="mui-input-row mui-checkbox ">
+			<label>菠萝</label>
+			<input name="Checkbox" type="checkbox">
+		</div>
+		
+		<div class="mui-input-row">
+			<label>其他</label>
+			<input type="text" placeholder="输入其他你喜欢的水果">
+		</div>
+		
+		<div class="mui-row mui-text-center">
+			<button id="clear" type="button" class="mui-btn mui-btn-blue">清除</button>
+			<button id="submit" type="button" class="mui-btn mui-btn-green">OK</button>
+		</div>
+	</div>
+	
+</body>
+</html>

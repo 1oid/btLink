@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				gestureConfig: {
+					longtap: true
+				}
+			});
+			
+			function new_source(title, desc) {
+				var new_element_li = document.createElement("li");
+				new_element_li.className = "mui-table-view-cell mui-media";
+				var new_element_div_in_li = document.createElement("div");
+				new_element_div_in_li.className = "mui-media-body";
+				new_element_div_in_li.innerHTML = "<span>"+title+"</span><p class=\"mui-ellipsis\">"+desc+"</p>";
+				new_element_li.appendChild(new_element_div_in_li);
+				document.getElementById("list").appendChild(new_element_li);
+			}
+			
+			function clear_old_page() {
+				var li_elements = document.getElementsByTagName("li");
+				console.log(li_elements.length);
+				console.log(li_elements);
+				while(document.getElementsByTagName("li").length != 0){
+					document.getElementById("list").removeChild(document.getElementsByTagName("li")[0]);
+				}
+			}
+			
+			window.onload = function() {
+				// 测试用的
+				mui(document.body).on("tap", ".mui-btn", function(e) {
+					console.log("tap");
+					new_source("新增的标题", "新增的描述");
+				});
+				
+				// 给 li 绑定事件
+				mui("#list").on("tap", "li", function(e){
+					var title = this.getElementsByTagName("div")[0].getElementsByTagName("span")[0].innerText;
+					var content = this.getElementsByTagName("div")[0].getElementsByTagName("p")[0].innerText;
+					console.log(title);
+					// 点击时候弹出提示
+					mui.confirm(content.substring(0, 15)+"...", title, ["否", "是"], function(e) {
+						
+						if(e.index == 0) {
+							
+						}else if(e.index == 1){
+							
+							var ret = window.androidinterface.ClipBoard(content);
+							mui.toast("复制成功", {duration: 'short', type: 'div'});
+						}else{
+							
+						}
+					});
+				});
+				
+				mui(document.body).on("keyup", ".mui-search", function(e) {
+// 					// 顶部添加动画效果
+// 					document.getElementById("progress").className = "mui-progressbar mui-progressbar-infinite";
+// 						
+					if(e && e.keyCode == 13) {
+						// 清空页面
+						clear_old_page();
+						// clear_old_page();
+						
+						var ret = window.androidinterface.getResultList(document.getElementById("search").value);
+						console.log(ret);
+						// console.log(JSON.parse(ret));
+						//mui.alert(ret);
+						var retList = JSON.parse(ret);
+						
+						retList.forEach(function(value){
+							if(value != ""){
+								new_source(value.name, value.link);
+							}
+						});
+						// 关闭动画效果
+						//console.log("close");
+						//document.getElementById("progress").className = "";
+					}
+					
+				});
+			}
+			
+		</script>
+		<style type="text/css">
+			.mui-search {
+				width: 80%;
+				margin: auto auto;
+				margin-top: 100px;
+			}
+			
+			.mui-table-view {
+				width: 95%;
+				margin: auto auto;
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">搜索</h1>
+		</header>
+		<div id="progress"></div>
+		<div id="main" class="mui-content">
+			<div class="mui-input-row mui-search">
+				<input id="search" type="search" class="mui-input-clear" placeholder="输入你要搜索的资源">
+			</div>
+			
+			<ul id="list" class="mui-table-view">
+				
+			</ul>
+			
+			<!-- <button type="button" style="width: 97%; margin: 10px auto;" class="mui-btn mui-btn-blue mui-btn-block">按钮</button> -->
+		</div>
+	</body>
+
+</html>
