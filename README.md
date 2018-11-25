@@ -8,9 +8,9 @@ ___
 - IDE: Android Studio
 
 ## App 效果浏览
-<img src="./images/1.png" alt="图1" width="200" height="400" />
-![图2](./images/2.png)
-![图3](./images/3.png)
+<img src="./images/1.png" alt="图1" width="200" height="350" />
+<img src="./images/2.png" alt="图2" width="200" height="350" />
+<img src="./images/3.png" alt="图3" width="200" height="350" />
 
 
 ### 遇到的一些问题
